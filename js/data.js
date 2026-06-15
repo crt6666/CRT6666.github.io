@@ -3,7 +3,7 @@ const POSTS = [
   {
     id: 1,
     slug: "2026-06-15",
-    title: "",
+    title: "丑橘不丑",
     date: "2026-06-15",
     excerpt: "",
     tags: [],
