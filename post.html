@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文章 - 哈吉米</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">哈吉<span>米</span></a>
+  <div class="nav-links">
+    <a href="index.html">文章</a>
+    <a href="about.html">关于</a>
+  </div>
+</nav>
+
+<main id="post-content">
+  <!-- 动态渲染 -->
+</main>
+
+<footer>
+  <p>用 <span class="heart">♥</span> 搭建 · 哈吉米 © 2026</p>
+</footer>
+
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    document.getElementById('post-content').innerHTML = `
+      <div class="empty-state">
+        <div class="emoji">🔍</div>
+        <h3>文章未找到</h3>
+        <p>或许它还在路上……<br><a href="index.html">← 返回首页</a></p>
+      </div>`;
+    document.title = '文章未找到 - 哈吉米';
+    return;
+  }
+
+  document.title = post.title + ' - 哈吉米';
+  document.getElementById('post-content').innerHTML = `
+    <article>
+      <header class="article-header">
+        <div class="post-date">${post.date}</div>
+        <h1>${post.title}</h1>
+        <div class="post-tags">
+          ${post.tags.map(t => `<span>#${t}</span>`).join('')}
+        </div>
+      </header>
+      <div class="article-body">
+        ${post.content}
+      </div>
+    </article>
+    <div style="text-align:center; padding-bottom: 40px;">
+      <a href="index.html">← 返回文章列表</a>
+    </div>`;
+})();
+</script>
+
+</body>
+</html>
