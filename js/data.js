@@ -9,7 +9,7 @@ const POSTS = [
     tags: [],
     content: `
 <div style="text-align:center; max-width:680px; margin:0 auto;">
-  <img src="images/bc1a5d343334631fdcd2a7bb13c02ed1.jpg" alt="" style="width:100%; height:auto; border-radius:8px; display:block;">
+  <img src="images/5cdaef3d8190f49528c15cdbee22ff31.jpg" alt="" style="width:100%; height:auto; border-radius:8px; display:block;">
   <p style="font-size:24px; font-weight:700; margin-top:24px; color:#e8546a;">你看你妈呢</p>
 </div>
     `
