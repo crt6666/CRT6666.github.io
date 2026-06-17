@@ -59,6 +59,18 @@
     <div style="text-align:center; padding-bottom: 40px;">
       <a href="index.html">← 返回文章列表</a>
     </div>`;
+
+  // 图片加载优化：fade-in + lazy fallback
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.article-body img').forEach(img => {
+      if (img.complete) {
+        img.classList.add('loaded');
+      } else {
+        img.onload = () => img.classList.add('loaded');
+        img.onerror = () => img.classList.add('loaded');
+      }
+    });
+  });
 })();
 </script>
 

@@ -38,6 +38,39 @@ a:hover { color: var(--accent-hover); }
 
 img { max-width: 100%; height: auto; }
 
+/* --- 图片加载优化 --- */
+img:not(.no-lazy) {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: #f0ece6;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
+}
+img:not(.no-lazy).loaded {
+  opacity: 1;
+}
+/* 针对文章内容区的图片，确保圆角和块级 */
+.article-body img,
+article img {
+  display: block;
+  border-radius: 8px;
+  contain: paint;
+}
+/* 低网速下先显示占位背景 */
+img[loading="lazy"] {
+  background: linear-gradient(110deg, #ece8e0 30%, #f5f2ec 50%, #ece8e0 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+img[loading="lazy"].loaded {
+  background: none;
+  animation: none;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 /* --- 导航栏 --- */
 nav {
   max-width: var(--max-width);
