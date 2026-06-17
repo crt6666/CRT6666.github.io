@@ -114,7 +114,11 @@ function getPostBySlug(slug) {
   return POSTS.find(p => p.slug === slug);
 }
 
-// 获取所有文章（按日期倒序）
+// 获取所有文章（按日期倒序，同日期按id倒序）
 function getAllPosts() {
-  return [...POSTS].sort((a, b) => b.date.localeCompare(a.date));
+  return [...POSTS].sort((a, b) => {
+    const dateCmp = b.date.localeCompare(a.date);
+    if (dateCmp !== 0) return dateCmp;
+    return b.id - a.id;
+  });
 }
